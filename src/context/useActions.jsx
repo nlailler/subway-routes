@@ -14,7 +14,7 @@ function routeSelected({ dispatch, data }) {
 
 function stopsLoaded({ dispatch, data }) {
   const { stops } = data;
-  dispatch({ type: ACTIONS.ROUTES_LOADED, stops });
+  dispatch({ type: ACTIONS.STOPS_LOADED, stops });
 }
 
 export default function useActions() {
