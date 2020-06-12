@@ -1,14 +1,15 @@
 import React, { useContext, useEffect } from 'react';
-import { Box } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { DisplayContext } from './context/DisplayProvider';
 import useActions from './context/useActions';
 import { LOADING_TEXT } from './utils/constants';
 import getRoutes from './utils/getRoutes';
 import RoutesContainer from './RoutesContainer';
 import StopsContainer from './StopsContainer';
+import getStops from './utils/getStops';
 
 export default function DisplayContainer() {
-  const { routesLoaded } = useActions();
+  const { routesLoaded, stopsLoaded } = useActions();
 
   useEffect(() => {
     (async () => {
@@ -18,16 +19,21 @@ export default function DisplayContainer() {
     })();
   }, []);
 
-  const { isLoading, routes, stops } = useContext(DisplayContext);
-
+  const { isLoading, selectedRouteId, stops } = useContext(DisplayContext);
+  const onClick = async () => {
+    stopsLoaded({ stops: await getStops({ routeId: selectedRouteId }) });
+  };
   return (
     <>
       {isLoading
         ? <div>{LOADING_TEXT}</div>
-        : (<Box>
-          <RoutesContainer routes={routes} />
-          <StopsContainer stops={stops}/>
-        < /Box>)
+        : (
+          <Box display="flex" flexDirection="row" alignItems="center">
+            <RoutesContainer />
+            <Button variant="outlined" onClick={onClick} style={{ maxHeight: '30px' }}> Get Stops</Button>
+            <StopsContainer stops={stops}/>
+          </Box>
+        )
       }
     </>
   );
