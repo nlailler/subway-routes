@@ -1,23 +1,33 @@
 import React, { useContext, useEffect } from 'react';
-import { Box, List, ListItem } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { DisplayContext } from './context/DisplayProvider';
 import useActions from './context/useActions';
 import { LOADING_TEXT } from './utils/constants';
+import getRoutes from './utils/getRoutes';
+import RoutesContainer from './RoutesContainer';
+import StopsContainer from './StopsContainer';
 
 export default function DisplayContainer() {
-  const { } = useActions();
+  const { routesLoaded } = useActions();
 
   useEffect(() => {
-    (async () => {})();
+    (async () => {
+      routesLoaded({
+        routes: await getRoutes(),
+      });
+    })();
   }, []);
 
-  const { isLoading } = useContext(DisplayContext);
+  const { isLoading, routes, stops } = useContext(DisplayContext);
 
   return (
     <>
       {isLoading
         ? <div>{LOADING_TEXT}</div>
-        : (<Box />)
+        : (<Box>
+          <RoutesContainer routes={routes} />
+          <StopsContainer stops={stops}/>
+        < /Box>)
       }
     </>
   );
