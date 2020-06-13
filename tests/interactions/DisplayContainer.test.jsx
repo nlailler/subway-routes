@@ -9,17 +9,16 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-// import useActions from '../src/context/useActions';
-import getRoutes from '../src/utils/getRoutes';
-import getStops from '../src/utils/getStops';
+import getRoutes from '../../src/utils/getRoutes';
+import getStops from '../../src/utils/getStops';
 
 import MockApp from './MockApp';
-import { LOADING_TEXT } from '../src/utils/constants';
+import { LOADING_TEXT } from '../../src/utils/constants';
 import {
   createGetStopsButtonDataId,
   createRouteListItemDataId,
   createStopListItemDataId,
-} from '../src/utils/dataId';
+} from '../../src/utils/dataId';
 
 const GET_STOPS_BUTTON_ID = createGetStopsButtonDataId();
 
@@ -36,8 +35,8 @@ const KENDALL_MIT_STOP_ID = createStopListItemDataId(KENDALL_MIT.name);
 const mockRoutes = () => [RED_LINE, ORANGE_LINE];
 const mockStops = () => [HARVARD, KENDALL_MIT];
 
-jest.mock('../src/utils/getRoutes');
-jest.mock('../src/utils/getStops');
+jest.mock('../../src/utils/getRoutes');
+jest.mock('../../src/utils/getStops');
 
 describe('Test display container', () => {
   beforeEach(() => {
