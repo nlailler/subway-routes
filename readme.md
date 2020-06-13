@@ -4,6 +4,8 @@ This application uses the [MBTA's API](https://www.mbta.com/developers/v3-api) t
 
 ## Installation and startup instructions:
 
+* Clone the repo:
+    - `git clone git@github.com:nlailler/subway-routes.git`
 * Install Node:
     - You can go to https://nodejs.org/en/download/ to download node.
 * Install npm:
