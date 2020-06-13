@@ -5,7 +5,7 @@ import { createStopListItemDataId } from './utils/dataId';
 export default function StopsContainer(props) {
   const { stops } = props;
   return (
-    <Box maxHeight={400} overflow="auto">
+    <Box maxHeight={600} overflow="auto">
       <List>
         {stops.map(stop => (
           <ListItem dense key={stop.name} data-testid={createStopListItemDataId(stop.name)}>
